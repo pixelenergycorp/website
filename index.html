@@ -91,10 +91,16 @@
             </div>
 
             <!-- Mobile Hamburger Button -->
-            <button id="mobile-menu-button" type="button" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none">
-                <i data-lucide="menu" id="menu-icon-open" class="w-6 h-6 block"></i>
-                <i data-lucide="x" id="menu-icon-close" class="w-6 h-6 hidden"></i>
-            </button>
+            <button id="mobile-menu-button" type="button" aria-label="Toggle navigation menu" class="md:hidden p-2.5 rounded-xl text-slate-700 hover:text-brand-blue hover:bg-slate-100 focus:outline-none transition-colors">
+    <!-- Open Hamburger Icon -->
+    <svg id="menu-icon-open" class="w-7 h-7 block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+    <!-- Close X Icon -->
+    <svg id="menu-icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+</button>
             
         </div>
     </div>
@@ -727,35 +733,43 @@
             }, 6000);
         }
     <script>
-        const menuBtn = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const openIcon = document.getElementById('menu-icon-open');
-        const closeIcon = document.getElementById('menu-icon-close');
-        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    // Toggle Mobile Navigation Menu
+    const menuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const openIcon = document.getElementById('menu-icon-open');
+    const closeIcon = document.getElementById('menu-icon-close');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                const isMenuHidden = mobileMenu.classList.contains('hidden');
-                
-                if (isMenuHidden) {
-                    mobileMenu.classList.remove('hidden');
-                    openIcon.classList.add('hidden');
-                    closeIcon.classList.remove('hidden');
-                } else {
-                    mobileMenu.classList.add('hidden');
-                    openIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
-                }
-            });
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            const isMenuHidden = mobileMenu.classList.contains('hidden');
+            
+            if (isMenuHidden) {
+                mobileMenu.classList.remove('hidden');
+                openIcon.classList.add('hidden');
+                openIcon.classList.remove('block');
+                closeIcon.classList.remove('hidden');
+                closeIcon.classList.add('block');
+            } else {
+                mobileMenu.classList.add('hidden');
+                openIcon.classList.remove('hidden');
+                openIcon.classList.add('block');
+                closeIcon.classList.add('hidden');
+                closeIcon.classList.remove('block');
+            }
+        });
 
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    openIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
-                });
+        // Close menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                openIcon.classList.remove('hidden');
+                openIcon.classList.add('block');
+                closeIcon.classList.add('hidden');
+                closeIcon.classList.remove('block');
             });
-        }
-    </script>
+        });
+    }
+</script>
 </body>
 </html>
